@@ -1,0 +1,37 @@
+{
+  "name": "slotservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "ts-node ./app/server.ts",
+    "start": "nodemon ./dist/server.js",
+    "prod": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonali-s/SlotService.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonali-s/SlotService/issues"
+  },
+  "homepage": "https://github.com/sonali-s/SlotService#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "method-override": "^3.0.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.2.12",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1"
+  },
+  "devDependencies": {
+    "tslint": "^5.15.0"
+  }
+}
