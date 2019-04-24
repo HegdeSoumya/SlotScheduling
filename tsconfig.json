@@ -8,10 +8,12 @@
       "outDir": "./dist",
       "baseUrl": "./lib",
       "resolveJsonModule": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
   },
   "include": [
-      "app/**/*.ts", "dist/server.js", "dist/app.js", "test/baseRoute.ts"
+      "app/**/*.ts", "dist/server.js", "dist/app.js", "test/baseRoute.ts", "app/database/config/config.js", "myapp/src/uttu.js"
   ],
   "exclude": [
       "node_modules"
