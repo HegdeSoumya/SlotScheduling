@@ -1,32 +1,38 @@
 import * as bodyParser from "body-parser";
 import express from "express";
-import sequelize from "sequelize";
+import i18n from "i18n";
+import sequelize from "../app/config/sequelize";
+import Routes from "../app/routes/routes";
 
 export class App {
 
     public app: express.Application = express();
-
+    public routes: Routes = new Routes();
     constructor() {
       this.app = express();
       this.config();
       this.postgresSetup();
+      this.routes.routes(this.app);
     }
     private config(): void {
-      this.app.use(bodyParser.json());
-      this.app.use(bodyParser.urlencoded({ extended: false }));
-      // this.app.use('/pets', routes);
+        this.app.use(bodyParser.json());
+        i18n.configure({
+            locales: ['en', 'es'],
+            directory: __dirname + '/locales',
+            defaultLocale: 'en',
+            register: global,
+        });
+        this.app.use(i18n.init);
     }
     private postgresSetup(): void {
-      Logger.info('Connecting to postgres');
-
       sequelize
           .authenticate()
           .then(() => {
-              Logger.info('Connected to postgres');
+              console.log('Connected to postgres');
               this.app.emit('Dbconnected');
           })
           .catch((err) => {
-              Logger.error('Unable to connect to postgres', err);
+              console.log('Unable to connect to postgres', err);
           });
     }
 }
