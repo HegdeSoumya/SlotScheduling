@@ -17,4 +17,22 @@ export default class SlotService {
                 AppConstant.ERROR_MESSAGES.ERR_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public getAllSlots = async () => {
+        try {
+            return await this.slotRepository.getAllSlots();
+        } catch (error) {
+            throw new ServiceError(AppConstant.ERROR_CODES.ERR_NOT_FOUND,
+                AppConstant.ERROR_MESSAGES.ERR_NOT_FOUND);
+        }
+    }
+
+    public getSlot = async (id: number) => {
+        try {
+            return await this.slotRepository.getSlot(id);
+        } catch (error) {
+            throw new ServiceError(AppConstant.ERROR_CODES.ERR_NOT_FOUND,
+                AppConstant.ERROR_MESSAGES.ERR_NOT_FOUND);
+        }
+    }
 }

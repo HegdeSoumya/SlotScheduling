@@ -53,4 +53,39 @@ export default class SlotController extends BaseController {
             }
         }
     }
+    public getAllSlots = async (req: Request, res: Response) => {
+         try {
+            const slots = await this.slotService.getAllSlots();
+            return this.appResponse.success(res, {slots});
+         } catch (error) {
+             if (error instanceof ServiceError) {
+                 return this.appResponse.notFound(
+                     res,
+                     AppConstants.ERROR_CODES.ERR_NOT_FOUND,
+                     AppConstants.ERROR_MESSAGES.ERR_NOT_FOUND,
+                     'Description',
+                 );
+             } else {
+                 throw error;
+             }
+         }
+    }
+
+    public getSlots = async (req: Request, res: Response) => {
+        try {
+            const slot = await this.slotService.getSlot(req.params.slotId);
+            return this.appResponse.success(res, {slot});
+        } catch (error) {
+            if (error instanceof ServiceError) {
+                return this.appResponse.notFound(
+                    res,
+                    AppConstants.ERROR_CODES.ERR_NOT_FOUND,
+                    AppConstants.ERROR_MESSAGES.ERR_NOT_FOUND,
+                    'Description',
+                );
+            } else {
+                throw error;
+            }
+        }
+    }
 }
