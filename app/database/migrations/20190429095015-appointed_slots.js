@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('slots', {
+    return queryInterface.createTable('appointed_slots', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -11,14 +11,14 @@ module.exports = {
       profile_id: {
         type: Sequelize.STRING,
       },
+      slot_id: {
+        type: Sequelize.STRING,
+      },
       start_time: {
         type: Sequelize.DATE,
       },
       end_time: {
         type: Sequelize.DATE,
-      },
-      slot_size: {
-        type: Sequelize.INTEGER,
       },
       created_at: Sequelize.DATE,
       updated_at: Sequelize.DATE,
@@ -27,6 +27,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('slots');
+    return queryInterface.dropTable('appointed_slots');
   }
 };
