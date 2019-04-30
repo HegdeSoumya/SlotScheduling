@@ -2,6 +2,7 @@ import { Response } from 'express';
 
 export class AppResponse {
     protected readonly SUCCESS = 200;
+    protected readonly CREATED = 201;
     protected readonly BAD_REQUEST = 400;
     protected readonly NOT_FOUND = 404;
     protected readonly INTERNAL_SERVER_ERROR = 500;
@@ -13,6 +14,12 @@ export class AppResponse {
         });
     }
 
+    public created = (res: Response) => {
+        res.status(this.CREATED).send({
+            status: 'CREATED',
+            message: 'data created',
+        });
+    }
     public error = (res: Response, code: string, message: string, description: string) => {
         res.status(this.INTERNAL_SERVER_ERROR).send({
             status: 'ERROR',

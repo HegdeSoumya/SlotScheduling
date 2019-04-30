@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import moment from "moment";
 import AppConstants from "../constants/AppConstant";
 import ServiceError from "../errors/ServiceError";
+import {AppointedSlot} from "../models/AppointedSlot";
 import {Slot} from "../models/Slot";
 import SlotService from "../services/SlotService";
 import BaseController from "./BaseController";
@@ -38,8 +39,8 @@ export default class SlotController extends BaseController {
                     'Description',
                 );
             }
-            const response = await this.slotService.createSlots(newSlot);
-            return await this.appResponse.success(res, {response});
+            await this.slotService.createSlots(newSlot);
+            return await this.appResponse.created(res);
         } catch (error) {
             if (error instanceof ServiceError) {
                 return this.appResponse.error(

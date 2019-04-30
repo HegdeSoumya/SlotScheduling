@@ -4,6 +4,7 @@ export default class SlotRepository {
     public createSlot = (newSlot: any) => {
         return newSlot.save();
     }
+
     public getAllSlots = () => {
         return Slot.findAll();
     }
